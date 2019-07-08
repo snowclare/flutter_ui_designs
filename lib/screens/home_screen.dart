@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ui_designs/screens/atro/atro.dart';
+import 'package:flutter_ui_designs/screens/material_dashboard/material_dashboard.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -76,6 +77,22 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           Divider(),
+          ListTile(
+            title: Text(
+              MaterialDashboard.uiName,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              'Tap to View',
+              style: TextStyle(color: Colors.grey),
+            ),
+            trailing: Icon(Icons.arrow_right),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => MaterialDashboard()));
+            },
+          ),
+          Divider()
         ],
       ),
     );
