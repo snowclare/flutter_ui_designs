@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_ui_designs/screens/atro/atro.dart';
 import 'package:flutter_ui_designs/screens/material_dashboard/material_dashboard.dart';
+import 'package:flutter_ui_designs/screens/share_screenshot/share_screenshot.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -61,40 +62,46 @@ class HomeScreen extends StatelessWidget {
               },
             ),
           ),
-          ListTile(
-            title: Text(
-              AtroScreen.uiName,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-              'Tap to View',
-              style: TextStyle(color: Colors.grey),
-            ),
-            trailing: Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => AtroScreen()));
-            },
-          ),
-          Divider(),
-          ListTile(
-            title: Text(
-              MaterialDashboard.uiName,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-              'Tap to View',
-              style: TextStyle(color: Colors.grey),
-            ),
-            trailing: Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => MaterialDashboard()));
-            },
-          ),
-          Divider()
+          _buildListItem(
+              context: context, name: AtroScreen.uiName, route: AtroScreen()),
+          _buildListItem(
+              context: context,
+              name: MaterialDashboard.uiName,
+              route: MaterialDashboard()),
+          _buildListItem(
+              context: context,
+              name: ShareScreenShot.uiName,
+              route: ShareScreenShot())
         ],
       ),
+    );
+  }
+
+  _buildListItem({
+    BuildContext context,
+    String name,
+    Widget route,
+  }) {
+    return Column(
+      children: <Widget>[
+        ListTile(
+          title: Text(
+            name,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            'Tap to View',
+            style: TextStyle(color: Colors.grey),
+          ),
+          trailing: Icon(Icons.arrow_right),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) => route));
+          },
+        ),
+        Divider(
+          height: 1,
+        )
+      ],
     );
   }
 }
